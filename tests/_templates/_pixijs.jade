@@ -1,0 +1,26 @@
+extends _page.jade
+
+block pageVars
+    - var titleHead = "PixiJS"
+    - var titlePage = "Default page title"
+
+block localVars
+    - var pixiVersion = "3.0.9"
+
+
+block head
+    link(href='../css/main.css', rel='stylesheet')
+
+block main
+    div#sketch01
+    div#sourceCode
+        a(href="js/sketch.js") sketch.js
+        block sources
+        
+    div#controls
+        block controls
+    
+block scripts
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/" + pixiVersion + "/pixi.min.js")
+    
+    script(src="js/sketch.js") 

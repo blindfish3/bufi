@@ -1,0 +1,29 @@
+extends _page.jade
+
+block pageVars
+    - var titleHead = "P5 JS"
+    - var titlePage = "Default page title"
+
+block localVars
+    - var p5version = "0.4.22"
+    - var loadP5DOM = false
+    - var loadP5Sound = false
+
+
+block head
+    link(href='../css/main.css', rel='stylesheet')
+
+block main
+    div#sketch01
+    div#sourceCode
+        a(href="js/sketch.js") sketch.js
+        block sources
+    
+block scripts
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/" + p5version + "/p5.js")
+    
+    if loadP5DOM
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/" + p5version + "/addons/p5.dom.js")
+    if loadP5Sound
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/" + p5version + "/addons/p5.sound.js")
+    script(src="js/sketch.js") 

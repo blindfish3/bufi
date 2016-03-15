@@ -1,0 +1,50 @@
+/* This isn't a demo of my design skills :)
+Just an example of what SASS brings to the party:
+ - partials - i.e. breaking CSS into modular files
+ - variables
+ - nesting
+ */
+ //- single line comments
+
+// See the SASS guide (http://sass-lang.com/guide) for the gory details
+
+@import 'config';
+
+body {
+    background: $bgColour;
+    margin: 0;
+}
+
+header {
+    padding: 0.5em 2em;
+    background: #d3d3d3;
+    border-bottom: solid 2px $borderColour;
+    margin-bottom: 0.75em;
+}
+
+main {
+
+    padding: 0 2em;
+    margin-bottom: 5em;
+    canvas {
+        border: solid 3px $borderColour;
+        border-radius: 4px;
+    }
+}
+
+footer {
+    padding: 0.5em 2em;
+    background: #333;
+    color: #fafafa;
+    border-top: solid 2px $borderColour;
+    margin-top: 0.75em;
+    width: 100%;
+    min-height: 2em;
+    float: left;
+}
+
+#sourceCode {
+    a {
+        display: block;
+    }
+}

@@ -1,0 +1,70 @@
+// additional
+.control-group-fieldset{
+    margin-top: 1em;
+    position: relative;
+    max-width: 40em;
+
+    legend {
+        padding: 0.25em 0.5em;
+        background: $primary-color-dark;
+        color:  $button-color-raised;
+        border-radius: 2px;
+        @extend .z-depth-1;
+    }
+}
+
+.radio-label {
+    margin-right: 2em;
+}
+
+.range-field {
+    width: 100%;
+
+    input {
+        width: calc(100% - 12.5em);
+        margin: 0 0.5em;
+        padding: 0;
+        max-width: 30em;
+
+        &[type=range] {
+            // range border in IE is ugly!
+            // just try it with a background colour...
+            border: none;
+        }
+    }
+
+    label {
+        display: inline-block;
+        max-width: 6em;
+        vertical-align: middle;
+    }
+
+    .range-output {
+        display: inline-block;
+        background: $secondary-color;
+        color: #fff;
+        padding: 0.333em 0.75em;
+        text-align: center;
+        width: 4em;
+        position: relative;
+        border-radius: 2px;
+        @extend .z-depth-1;
+
+        // adapted from: http://codepen.io/anon/pen/ONMWKe
+        &:after {
+            position: absolute;
+            top: calc(50% - 2px);
+            left: 4em;
+            width: 0;
+            height: 0;
+            border-top: 4px solid transparent;
+            border-left: 4px solid $secondary-color;
+            border-bottom: 4px solid transparent;
+            content: '';
+        }
+    }
+
+    sup.tiny {
+        font-size: 50%;
+    }
+}

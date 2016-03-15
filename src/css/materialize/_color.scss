@@ -1,0 +1,185 @@
+// Utility Color Classes
+
+//.success {
+//
+//}
+
+// Google Color Palette defined: http://www.google.com/design/spec/style/color.html
+
+// using a more limited colour palette
+$red: (
+  "lighten-5":  #FFEBEE,
+  "lighten-4":  #FFCDD2,
+  "lighten-3":  #EF9A9A,
+  "lighten-2":  #E57373,
+  "lighten-1":  #EF5350,
+  "base":       #F44336,
+  "darken-1":   #E53935,
+  "darken-2":   #D32F2F,
+  "darken-3":   #C62828,
+  "darken-4":   #B71C1C,
+  "accent-1":    #FF8A80,
+  "accent-2":    #FF5252,
+  "accent-3":    #FF1744,
+  "accent-4":    #D50000
+);
+
+$cyan: (
+  "lighten-5":  #e0f7fa,
+  "lighten-4":  #b2ebf2,
+  "lighten-3":  #80deea,
+  "lighten-2":  #4dd0e1,
+  "lighten-1":  #26c6da,
+  "base":       #00bcd4,
+  "darken-1":   #00acc1,
+  "darken-2":   #0097a7,
+  "darken-3":   #00838f,
+  "darken-4":   #006064,
+  "accent-1":    #84ffff,
+  "accent-2":    #18ffff,
+  "accent-3":    #00e5ff,
+  "accent-4":    #00b8d4
+);
+
+$teal: (
+  "lighten-5":  #e0f2f1,
+  "lighten-4":  #b2dfdb,
+  "lighten-3":  #80cbc4,
+  "lighten-2":  #4db6ac,
+  "lighten-1":  #26a69a,
+  "base":       #009688,
+  "darken-1":   #00897b,
+  "darken-2":   #00796b,
+  "darken-3":   #00695c,
+  "darken-4":   #004d40,
+  "accent-1":    #a7ffeb,
+  "accent-2":    #64ffda,
+  "accent-3":    #1de9b6,
+  "accent-4":    #00bfa5
+);
+
+$light-green: (
+  "lighten-5":  #f1f8e9,
+  "lighten-4":  #dcedc8,
+  "lighten-3":  #c5e1a5,
+  "lighten-2":  #aed581,
+  "lighten-1":  #9ccc65,
+  "base":       #8bc34a,
+  "darken-1":   #7cb342,
+  "darken-2":   #689f38,
+  "darken-3":   #558b2f,
+  "darken-4":   #33691e,
+  "accent-1":    #ccff90,
+  "accent-2":    #b2ff59,
+  "accent-3":    #76ff03,
+  "accent-4":    #64dd17
+);
+
+$amber: (
+  "lighten-5":  #fff8e1,
+  "lighten-4":  #ffecb3,
+  "lighten-3":  #ffe082,
+  "lighten-2":  #ffd54f,
+  "lighten-1":  #ffca28,
+  "base":       #ffc107,
+  "darken-1":   #ffb300,
+  "darken-2":   #ffa000,
+  "darken-3":   #ff8f00,
+  "darken-4":   #ff6f00,
+  "accent-1":    #ffe57f,
+  "accent-2":    #ffd740,
+  "accent-3":    #ffc400,
+  "accent-4":    #ffab00
+);
+
+$blue-grey: (
+  "lighten-5":  #eceff1,
+  "lighten-4":  #cfd8dc,
+  "lighten-3":  #b0bec5,
+  "lighten-2":  #90a4ae,
+  "lighten-1":  #78909c,
+  "base":       #607d8b,
+  "darken-1":   #546e7a,
+  "darken-2":   #455a64,
+  "darken-3":   #37474f,
+  "darken-4":   #263238
+);
+
+$grey: (
+  "lighten-5":  #fafafa,
+  "lighten-4":  #f5f5f5,
+  "lighten-3":  #eeeeee,
+  "lighten-2":  #e0e0e0,
+  "lighten-1":  #bdbdbd,
+  "base":       #9e9e9e,
+  "darken-1":   #757575,
+  "darken-2":   #616161,
+  "darken-3":   #424242,
+  "darken-4":   #212121
+);
+
+$shades: (
+  "black":        #000000,
+  "white":        #FFFFFF,
+  "transparent":  transparent
+);
+
+$colors: (
+  "red": $red,
+  "cyan": $cyan,
+  "teal": $teal,
+  "light-green": $light-green,
+  "amber": $amber,
+  "blue-grey": $blue-grey,
+  "grey": $grey,
+  "shades": $shades
+);
+
+
+// Color Classes
+
+@each $color_name, $color in $colors {
+  @each $color_type, $color_value in $color {
+    @if $color_type == "base" {
+      .#{$color_name} {
+        background-color: $color_value !important;
+      }
+      .#{$color_name}-text {
+        color: $color_value !important;
+      }
+    }
+    @else {
+      .#{$color_name}.#{$color_type} {
+        background-color: $color_value !important;
+      }
+      .#{$color_name}-text.text-#{$color_type} {
+        color: $color_value !important;
+      }
+    }
+  }
+}
+
+// Shade classes
+@each $color, $color_value in $shades {
+  .#{$color} {
+    background-color: $color_value !important;
+  }
+  .#{$color}-text {
+    color: $color_value !important;
+  }
+}
+
+
+// usage: color("name_of_color", "type_of_color")
+// to avoid to repeating map-get($colors, ...)
+
+@function color($color, $type) {
+  @if map-has-key($colors, $color) {
+    $curr_color: map-get($colors, $color);
+    @if map-has-key($curr_color, $type) {
+      @return map-get($curr_color, $type);
+    }
+  }
+  @warn "Unknown `#{name}` in $colors.";
+  @return null;
+}
