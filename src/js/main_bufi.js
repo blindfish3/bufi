@@ -1,4 +1,4 @@
-/*!
+/*@license
  * BUFI - lightweight GUI
  * Copyright 2014-2015 blindfish
  * MIT License

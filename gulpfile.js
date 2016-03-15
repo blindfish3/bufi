@@ -97,10 +97,10 @@ gulp.task('browserify', function (done) {
 });
 
 
-
+//TODO: rename output to .min.js
 gulp.task('uglify', ['browserify'], function() {
   return gulp.src(BUILD + '/js/bufi.js')
-    .pipe(uglify())
+    .pipe(uglify({output: {comments: /^!|@preserve|@license|@cc_on/i}}))
     .pipe(gulp.dest(DIST));
 });
 
