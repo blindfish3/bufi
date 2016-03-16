@@ -108,13 +108,13 @@ controls.add('range', {
     id: 'strange01',
     step: 1000,
     max: 1000000,
-    value: 0
+    value: 70000
 }, testCallback);
 controls.add('range', {
     id: 'strange02',
     step: 0.00001,
     max: 0.1,
-    value: 0.05
+    value: 1/3
 }, testCallback);
 controls.add('button', testCallback);
 controls.add('button', {

@@ -51,7 +51,8 @@ gulp.task('clean', function(callback) {
 });
 
 
-
+//NOTE: this works to a point; but I suspect that `.pipe(browserSync.stream());`
+// leads to browserSync refresh happening before all files are parsed :(
 gulp.task('browserify', function (done) {
 
   globby(['./src/js/main_bufi.js', './tests/js/main_**.js']).then(function(entries) {
@@ -97,10 +98,14 @@ gulp.task('browserify', function (done) {
 });
 
 
+
 //TODO: rename output to .min.js
 gulp.task('uglify', ['browserify'], function() {
   return gulp.src(BUILD + '/js/bufi.js')
     .pipe(uglify({output: {comments: /^!|@preserve|@license|@cc_on/i}}))
+    .pipe(rename(function(path) {
+        path.basename += '.min';
+    }))
     .pipe(gulp.dest(DIST));
 });
 
@@ -117,7 +122,7 @@ gulp.task('templates', function() {
         .on('error', handleError('jade'))
         .pipe(gulp.dest(BUILD))
         //TODO: is this proper usage?
-        .pipe(browserSync.stream());
+        // .pipe(browserSync.stream());
 });
 
 gulp.task('jade-watch', ['templates'], reload);
@@ -134,7 +139,7 @@ gulp.task('sass', function() {
     }).on('error', sass.logError))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(BUILD))
-    // .pipe(browserSync.stream());
+    .pipe(browserSync.stream());
 
 });
 
@@ -142,12 +147,17 @@ gulp.task('sass', function() {
 gulp.task('minify-css', function() {
   return gulp.src('./build/css/bufi_m.css')
     .pipe(cleanCSS({compatibility: 'ie9'}))
+    .pipe(rename(function(path) {
+        path.basename += '.min';
+    }))
     .pipe(gulp.dest(DIST));
 });
 
 
 
 gulp.task('build', ['uglify', 'minify-css']);
+
+
 
 //TODO: run clean first
 gulp.task('serve',

@@ -53,8 +53,15 @@ var templates = {
           }}]
     },
 
+    //TODO: learn how to produce tidy EJS code.  This feels wrong :/
     range: {
-        tmplt : '<p class="range-field"><span class="range-output" id="<%= id + "_out" %>"><%= value %></span><input id="<%= id %>" type="range" min="<%= min %>" max="<%= max %>" value="<%= value %>" step="<%= step %>"><label for="<%= id %>"><%= label %></label></p>',
+        tmplt : '<p class="range-field"><span class="range-output" id="<%= id + "_out" %>">'+
+        '<% if(value >= 10000) { %>' +
+            '<%= value/10000 %> <sup class="tiny">*10^4</sup>'+
+        '<% } else { %>'+
+            '<%= String(value).substring(0,5) %>' +
+        '<% } %>'+
+        '</span><input id="<%= id %>" type="range" min="<%= min %>" max="<%= max %>" value="<%= value %>" step="<%= step %>"><label for="<%= id %>"><%= label %></label></p>',
         defaults : {value: 10, min: 0, max: 100, step: 10, label: "range"},
         events: [{"input" : function(evt) {
                     //NOTE: Odd; the fact of adding an input event listener appears to
@@ -65,6 +72,7 @@ var templates = {
                     var outputID = evt.target.id + "_out";
                     var outputSpan = document.getElementById(outputID);
                     var outputValue = evt.target.value;
+
                     if(outputValue >= 10000) {
                         outputSpan.innerHTML = outputValue/10000 + '<sup class="tiny">*10^4</sup>';
                     }
