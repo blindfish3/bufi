@@ -41,7 +41,7 @@ bufi.prototype.add = function(type, options, callback) {
     addControl(type, this.target, options, callback);
 }
 
-
+//TODO: implement id on fieldset!
 bufi.prototype.addControlGroup = function(controls, legend, id) {
     var container = document.createElement('fieldset');
     container.className = 'control-group-fieldset';

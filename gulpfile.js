@@ -88,7 +88,10 @@ gulp.task('browserify', function (done) {
 
     });
 
-    es.merge(tasks).on('end', done);
+    es.merge(tasks).on('end', function() {
+        reload();
+        done();
+    });
 
 
   }).catch(function(err) {

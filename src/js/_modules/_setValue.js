@@ -1,7 +1,6 @@
 //TODO: NPM install currently broken - install via NPM once fixed
 var trigger = require('./_tinyTrigger');
 
-
 var setValue = {
     "range" : function(targetControl, value) {
         var max = targetControl.opts.max;

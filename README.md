@@ -2,7 +2,7 @@
 _simple scripted UI controls_
 
 ## Description
-As much an exercise in getting more familiar with Browserify, Gulp etc. as addressing a common requirement I have to quickly add controls to a sketch from within my sketch code.  I suspect there are libraries out there that already do much of this; so if you're looking for something equivalent have a dig around first: I haven't thoroughly tested or documented this yet and may not continue to develop it going forward.
+As much an exercise in getting more familiar with Browserify, Gulp etc. as addressing a common requirement I have to quickly add controls to a sketch from within my sketch code.  There are libraries out there that already do much of this (e.g. [dat.gui](https://workshop.chromeexperiments.com/examples/gui/)); so if you're looking for something a little more mature have a dig around first: I haven't thoroughly tested or documented this yet and may not continue to develop it going forward.
 
 ## Dependencies
 - [MaterialiseCSS](http://materializecss.com/) ([github](https://github.com/Dogfalo/materialize))
@@ -10,7 +10,7 @@ As much an exercise in getting more familiar with Browserify, Gulp etc. as addre
 - [eventlistener](https://www.npmjs.com/package/eventlistener)
 
 ## Usage
-Pull the script:
+At the bottom of `<body>` pull the script:
 
 `<script src="js/bufi.min.js"></script>`
 
@@ -18,7 +18,7 @@ Add the control object (ideally specifying the #id of a target container element
 
 `var controls = new bufi('#control01');`
 
-Then, to add controls, use `bufiInstance.add(type [String], options [Object].  For example:
+Then, to add controls, use `bufiInstance.add(type [String], options [Object], callback [Function]).  For example:
 
     controls.add('button',
         {

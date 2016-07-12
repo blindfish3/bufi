@@ -2,7 +2,6 @@
 
 var log = require('../../../_lib/_log');
 
-//TODO: fieldsets and addition of multiple grouped controls
 //TODO: add option to enable/disable controls
 
 var ejs = require("ejs");
@@ -52,7 +51,7 @@ var addControl = function(type, target, controlOptions, callback) {
     var outputWrapper = document.createElement('div');
     outputWrapper.innerHTML = output;
     //Since we're adding output to innerHTML dynamically
-    //we can probably get awat with not checking for nodes with #text here :)
+    //we can probably get away with not checking for nodes with #text here :)
     output = outputWrapper.firstChild;
 
     for(var event in typeProps.events) {
