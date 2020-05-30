@@ -3,12 +3,12 @@ block pageVars
     - var titleHead = "blindfish simple web dev environment demo"
     - var titlePage = "p5 - browserify and SASS"
 block append localVars
-    //- The following can be uncommented if you want to override any 
+    //- The following can be uncommented if you want to override any
     //- of the default options already set in the template:
     //- - var p5version = "0.2.20"
     //- - var loadP5DOM = true
     //- - var loadP5Sound = true
-    
+
 block append head
     link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
     link(href='css/bufi_m.css', rel='stylesheet')
@@ -24,29 +24,29 @@ block main
             a.btn.amber Amber
             a.btn.blue-grey blue-grey
             a.btn.grey grey
-            
+
         p
             a.btn-floating.btn-large.teal
                 i.material-icons add
         p
             a.btn-large.disabled Button
-        
+
         p
             input#test1.with-gap(name="group1", type="radio")
             label(for="test1") Foo
             input#test2.with-gap(name="group1", type="radio")
             label(for="test2") Bar
-        
+
         p
             input.filled-in#filled-in-box(type="checkbox", checked="checked")
             label(for="filled-in-box") Filled in
-                
+
         div.switch
             label Off
                 input(type="checkbox")
                 span.lever
                 |On
-        
+
         p.range-field
             input#test5(type="range", min="0", max="100")
 
@@ -61,6 +61,6 @@ block footer
     footer.page-footer.green
         div.container
             p some footer content
-                                
+
 block scripts
-    script(src="js/bufi.js") 
+    script(src="js/bufi.js")

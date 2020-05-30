@@ -9,12 +9,12 @@
 
 "use strict";
 
-var log = require('../../_lib/_log');
-var addControl = require('./_modules/_addControl');
-var setValueByType = require('./_modules/_setValue');
-var storedControls = {};
+const log = require('../../_lib/_log');
+const addControl = require('./_modules/_addControl');
+const setValueByType = require('./_modules/_setValue');
+const storedControls = {};
 
-var bufi = function(target) {
+const bufi = function(target) {
     if(target) {
         this.target = target && document.querySelector(target);
     }

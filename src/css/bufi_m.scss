@@ -12,8 +12,11 @@
 //NOTE: looks like SASS output needs some proper configuration
 // current set-up is fine for dev but NOT for production
 //Otherwise just use the original vendor CSS
-
-@import 'materialize-src/sass/components/mixins';
+@import "materialize-css/sass/components/color-variables";
+@import "materialize-css/sass/components/color-classes";
+//O
+@import "materialize-css/sass/components/variables";
+// @import 'materialize-css/sass/components/mixins';
 @import 'materialize/color';
 // @import 'materialize-src/sass/components/color';
 // Variables;
@@ -25,12 +28,12 @@
 
 
 // components
-@import "materialize-src/sass/components/global";
-@import "materialize-src/sass/components/icons-material-design";
+@import "materialize-css/sass/components/global";
+@import "materialize-css/sass/components/icons-material-design";
 
-@import "materialize-src/sass/components/cards";
-@import "materialize-src/sass/components/buttons";
+@import "materialize-css/sass/components/cards";
+@import "materialize-css/sass/components/buttons";
 
-@import "materialize-src/sass/components/form";
+@import "materialize-css/sass/components/forms/forms";
 
 @import "custom";
