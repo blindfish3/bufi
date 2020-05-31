@@ -29,26 +29,45 @@ block main
             a.btn-floating.btn-large.teal
                 i.material-icons add
         p
-            a.btn-large.disabled Button
+            a.btn-large.disabled Disabled
 
-        p
+        p.radio-group
+          label.radio-label
             input#test1.with-gap(name="group1", type="radio")
-            label(for="test1") Foo
+            span Foo
+          label.radio-label
             input#test2.with-gap(name="group1", type="radio")
-            label(for="test2") Bar
+            span Bar
+            label.radio-label
+              input#test2.with-gap(name="group1", type="radio", checked="checked")
+              span Checked
 
         p
-            input.filled-in#filled-in-box(type="checkbox", checked="checked")
-            label(for="filled-in-box") Filled in
+          label
+            input.filled-in(type="checkbox", checked="checked")
+            span Filled in checked
 
-        div.switch
+        p
+            label
+              input.filled-in(type="checkbox")
+              span Filled in unchecked
+
+        p.switch
             label Off
                 input(type="checkbox")
                 span.lever
                 |On
 
+        p.switch
+            label Off
+                input(type="checkbox", checked="checked")
+                span.lever
+                |On
+
         p.range-field
             input#test5(type="range", min="0", max="100")
+            label(for="test5")
+              span Range
 
         //- useful for description and source code links
         div.card.blue-grey
@@ -57,6 +76,15 @@ block main
                 p Some random text describing the sketch
             div.card-action
                 a(href="#") source.js
+        p .
+        p .
+        p .
+        p .
+        p .
+        p .
+        p .
+        p .
+
 block footer
     footer.page-footer.green
         div.container

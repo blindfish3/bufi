@@ -24,7 +24,7 @@ header {
 
 main {
 
-    padding: 0 2em;
+    padding: 0 2em 3em;
     margin-bottom: 5em;
     canvas {
         border: solid 3px $borderColour;
@@ -33,6 +33,8 @@ main {
 }
 
 footer {
+  position: fixed;
+  bottom: 0;
     padding: 0.5em 2em;
     background: #333;
     color: #fafafa;

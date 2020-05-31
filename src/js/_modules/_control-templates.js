@@ -20,7 +20,7 @@ var templates = {
     },
 
     checkbox: {
-        tmplt : '<p><input id="<%= id %>" type="checkbox" <% if(checked) { %> checked="checked" <% } %> class="filled-in"><label for="<%= id %>"><%= label %></label></p>',
+        tmplt : '<p><label><input id="<%= id %>" type="checkbox" <% if(checked) { %> checked="checked" <% } %> class="filled-in"><span><%= label %></span></label></p>',
         defaults : { checked: false, label : "label"},
         limits: {
             checked: [true]
@@ -42,8 +42,8 @@ var templates = {
         tmplt: '<p class="radio-group" id="<%= id %>">' +
         '<% if(label) { %><label for="<%= id %>"><%= label %></label> <% } %>' +
         '<% for(var i=0, len=input.length; i<len;i++){ %>'+
-        '<input id="<%= id + "_" + i %>" name="<%= id %>" value="<%= input[i].value %>" <% if(input[i].checked) { %> checked="checked" <% } %>  type="radio" class="with-gap">'+
-          '<label for="<%= id + "_" + i %>" class="radio-label"><%= input[i].label %></label>'+
+        '<label class="radio-label"><input id="<%= id + "_" + i %>" name="<%= id %>" value="<%= input[i].value %>" <% if(input[i].checked) { %> checked="checked" <% } %>  type="radio" class="with-gap">'+
+          '<span><%= input[i].label %></span></label>'+
           '<% }; %> </p>',
         defaults: {label: ""},
         limits: {},

@@ -1,11 +1,13 @@
+$labelColour: darken(grey, 30%);
+
 // additional
 .control-group-fieldset{
-    margin-top: 1em;
+    margin-top: 1rem;
     position: relative;
-    max-width: 40em;
+    max-width: 40rem;
 
     legend {
-        padding: 0.25em 0.5em;
+        padding: 0.25rem 0.5rem;
         background: $primary-color-dark;
         color:  $button-color-raised;
         border-radius: 2px;
@@ -14,17 +16,17 @@
 }
 
 .radio-label {
-    margin-right: 2em;
+    margin-right: 2rem;
 }
 
 .range-field {
     width: 100%;
 
     input {
-        width: calc(100% - 12.5em);
-        margin: 0 0.5em;
+        width: calc(100% - 12.5rem);
+        margin: 0 0.5rem;
         padding: 0;
-        max-width: 30em;
+        max-width: 30rem;
 
         &[type=range] {
             // range border in IE is ugly!
@@ -35,17 +37,18 @@
 
     label {
         display: inline-block;
-        max-width: 6em;
+        max-width: 6rem;
         vertical-align: middle;
+        font-size: 1rem;
     }
 
     .range-output {
         display: inline-block;
         background: $secondary-color;
         color: #fff;
-        padding: 0.333em 0.75em;
+        padding: 0.333rem 0.75rem;
         text-align: center;
-        width: 4em;
+        width: 4rem;
         position: relative;
         border-radius: 2px;
         @extend .z-depth-1;
@@ -54,7 +57,7 @@
         &:after {
             position: absolute;
             top: calc(50% - 2px);
-            left: 4em;
+            left: 4rem;
             width: 0;
             height: 0;
             border-top: 4px solid transparent;
@@ -67,4 +70,15 @@
     sup.tiny {
         font-size: 50%;
     }
+}
+
+.radio-group label,
+input[type="checkbox"] + span,
+input[type="radio"]:checked + span,
+input[type="radio"]:not(:checked) + span,
+.range-field label,
+.switch label,
+.radio-label {
+  font-size: 1.0rem;
+  color: $labelColour;
 }
