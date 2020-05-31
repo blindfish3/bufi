@@ -15,8 +15,8 @@ const es = require("event-stream");
 const jade = require("gulp-jade");
 const sass = require("gulp-dart-sass");
 const cleanCSS = require("gulp-clean-css");
-// use this to remove unused CSS from vendor stylesheets :)
-// const uncss    = require('gulp-uncss');
+const postcss = require('gulp-postcss');
+const uncss = require('postcss-uncss');
 
 const jshint = require("gulp-jshint");
 const browserify = require("browserify");
@@ -155,13 +155,28 @@ function doSass() {
 
 function minifyCSS() {
   return gulp
-    .src("./build/css/bufi_m.css")
+    .src(DIST + "/bufi_m.css")
     .pipe(cleanCSS({ compatibility: "ie11" }))
     .pipe(
       rename(function(path) {
         path.basename += ".min";
       })
     )
+    .pipe(gulp.dest(DIST));
+}
+
+// TODO: this appears to work but throws an error when trying to load
+// browserSync script; which it doesn't need.
+// Can't include it in the build process if it errors :/
+function foo() {
+  const plugins = [
+    uncss({
+      html: [BUILD + '/static.html']
+    }),
+  ];
+
+  return gulp.src(BUILD + "/css/bufi_m.css")
+    .pipe(postcss(plugins))
     .pipe(gulp.dest(DIST));
 }
 
@@ -189,6 +204,8 @@ function serve() {
 // working :)
 gulp.task('clean', clean);
 gulp.task('css', doSass);
+gulp.task('minCss', minifyCSS);
+gulp.task('foo', foo);
 gulp.task('jade', templates);
 gulp.task('scripts', scripts);
 // NOTE: not quite there yet: need to run scripts manually before this.
