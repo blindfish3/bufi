@@ -24,6 +24,9 @@ block main
             a.btn.amber Amber
             a.btn.blue-grey blue-grey
             a.btn.grey grey
+            a.btn.btn-large BIG
+            a.btn.btn-flat FLAT
+            a.btn.btn-flat.btn-large BIG FLAT
 
         p
             a.btn-floating.btn-large.teal
@@ -31,43 +34,52 @@ block main
         p
             a.btn-large.disabled Disabled
 
-        p.radio-group
-          label.radio-label
-            input#test1.with-gap(name="group1", type="radio")
-            span Foo
-          label.radio-label
-            input#test2.with-gap(name="group1", type="radio")
-            span Bar
-            label.radio-label
-              input#test2.with-gap(name="group1", type="radio", checked="checked")
-              span Checked
+        fieldset.control-group-fieldset
+            legend fieldset legend
+            p.radio-group
+              label Radio Group
+              label.radio-label
+                input#test1.with-gap(name="group1", type="radio")
+                span Foo
+              label.radio-label
+                input#test2.with-gap(name="group1", type="radio")
+                span Bar
+                label.radio-label
+                  input#test2.with-gap(name="group1", type="radio", checked="checked")
+                  span Checked
 
-        p
-          label
-            input.filled-in(type="checkbox", checked="checked")
-            span Filled in checked
+            p
+              label
+                input.filled-in(type="checkbox", checked="checked")
+                span Filled in checked
 
-        p
-            label
-              input.filled-in(type="checkbox")
-              span Filled in unchecked
+            p
+                label
+                  input.filled-in(type="checkbox")
+                  span Filled in unchecked
 
-        p.switch
-            label Off
-                input(type="checkbox")
-                span.lever
-                |On
+            p.switch
+                label Off
+                    input(type="checkbox")
+                    span.lever
+                    |On
 
-        p.switch
-            label Off
-                input(type="checkbox", checked="checked")
-                span.lever
-                |On
+            p.switch
+                label Off
+                    input(type="checkbox", checked="checked")
+                    span.lever
+                    |On
 
-        p.range-field
-            input#test5(type="range", min="0", max="100")
-            label(for="test5")
-              span Range
+            p.range-field
+                input#test5(type="range", min="0", max="100")
+                label(for="test5")
+                  span Range
+
+            p.range-field
+                span.range-output 10
+                input#test5(type="range", min="0", max="100")
+                label(for="test5")
+                  span Range
 
         //- useful for description and source code links
         div.card.blue-grey
