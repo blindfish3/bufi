@@ -49,16 +49,15 @@ function clean(callback) {
   });
 }
 
-async function scripts(done) {
+function scripts(done) {
   const entries = await getScriptEntries();
-  await entries.forEach((entry) => {
+  entries.forEach((entry) => {
     return doBrowserify(entry);
   })
+  // TODO: ensure all entries have been processed before continuing
   done();
 };
 
-//NOTE: this works to a point; but I suspect that `.pipe(browserSync.stream());`
-// leads to browserSync refresh happening before all files are parsed :(
 async function getScriptEntries() {
   return await globby(["./src/js/main_bufi.js", "./tests/js/main_**.js"])
     .then(function(entries) {
@@ -77,7 +76,6 @@ async function getScriptEntries() {
     });
 }
 
-//TODO: rename output to .min.js
 function doUglify() {
   return gulp
     .src(BUILD + "/js/bufi.js")
@@ -155,7 +153,7 @@ function doSass() {
 
 function minifyCSS() {
   return gulp
-    .src(DIST + "/bufi_m.css")
+    .src(BUILD + "/bufi_m.css")
     .pipe(cleanCSS({ compatibility: "ie11" }))
     .pipe(
       rename(function(path) {
@@ -165,10 +163,7 @@ function minifyCSS() {
     .pipe(gulp.dest(DIST));
 }
 
-// TODO: this appears to work but throws an error when trying to load
-// browserSync script; which it doesn't need.
-// Can't include it in the build process if it errors :/
-function foo() {
+function purgeCSS() {
   const plugins = [
     uncss({
       html: [BUILD + '/static.html']
@@ -177,7 +172,7 @@ function foo() {
 
   return gulp.src(BUILD + "/css/bufi_m.css")
     .pipe(postcss(plugins))
-    .pipe(gulp.dest(DIST));
+    .pipe(gulp.dest(BUILD));
 }
 
 function serve() {
@@ -204,11 +199,10 @@ function serve() {
 // working :)
 gulp.task('clean', clean);
 gulp.task('css', doSass);
-gulp.task('minCss', minifyCSS);
-gulp.task('foo', foo);
+gulp.task('minCSS', minifyCSS);
+gulp.task('purgeCSS', purgeCSS);
 gulp.task('jade', templates);
 gulp.task('scripts', scripts);
 // NOTE: not quite there yet: need to run scripts manually before this.
-// TODO: fix timing issue; presumably because scripts is async.
-gulp.task('build', series(scripts, templates, doSass, doUglify, minifyCSS));
+gulp.task('build', series(scripts, templates, doSass, doUglify, purgeCSS, minifyCSS));
 gulp.task("default", series(clean, series(parallel(templates, doSass, scripts), serve)));
